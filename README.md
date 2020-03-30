@@ -18,7 +18,7 @@ You will need local LAN access to a Piaware enabled device.
 ```python3 setup.py install ```
 
 # Sample Usuage
-``` 
+```python
 from aircraft import Aircraft
 from queryscanner import QueryScanner
 
