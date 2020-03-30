@@ -27,8 +27,7 @@ aircraft = q.get_all_aircraft()
 
 for i in aircraft: 
     print(i)
-
-
+    
 ```
 
 # To-Do
