@@ -32,8 +32,9 @@ for i in aircraft:
 ```
 
 # To-Do
-[ ] Setup a docs for reference
-[ ] Improve setup.py and requirements
-[ ] Better exception handling
-[ ] Implement generator function for querying
-[ ] Fixes "To-Dos" throughout code base
+
+- [ ] Setup a docs for reference
+- [ ] Improve setup.py and requirements
+- [ ] Better exception handling- 
+- [ ] Implement generator function for querying
+- [ ] Fixes "To-Dos" throughout code base
