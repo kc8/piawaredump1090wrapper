@@ -22,7 +22,7 @@ You will need local LAN access to a Piaware enabled device.
 from aircraft import Aircraft
 from queryscanner import QueryScanner
 
-q = QueryScanner("RPI_IP_ADDR_AS_STRING")
+q = QueryScanner("http://RPI_IP_ADDR_AS_STRING")
 aircraft = q.get_all_aircraft()
 
 for i in aircraft: 

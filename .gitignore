@@ -1,6 +1,8 @@
 # Custom ignore files
 secrets.json
 /adbs_env
+/dev_env
+example.py
 
 # My work on a google assitant function that is not yet ready. But I do have a working test
 /google_assistant_local_sample

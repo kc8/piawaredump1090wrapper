@@ -1,11 +1,11 @@
 from .calculate_distance_of_aircraft import calculate_distance_of_aircraft
 from .exceptions import NotofTypeFloat, IncorrectDeltaCalculation, IncorrectLngLat
-"""
-Airacraft class that holds information a single aircraft
-"""
+
 
 class Aircraft:
-
+    """
+    Airacraft class that holds information a single aircraft
+    """
     # Note: maybe we can make another class or method that tracks location? 
     # Note: hex is ICAO number. ADSBexchange gives it the name hex. 
     # Note: lon is lng in class. Similar to how hex is setup
@@ -90,7 +90,7 @@ class Aircraft:
     def update_info(self, **kwargs) -> bool: 
         """
         Updates attirubutes of the airplane. 
-        This method should not update the hex (ICAO) number
+        # To-Do: This method should not update the hex (ICAO) number
         :param: 
             **kwargs: Dictionary of values to update
         :return: Boolean value if update was sucessful or not
@@ -103,9 +103,10 @@ class Aircraft:
             setattr(self, key, value)
         return True
         
-    def get_aircraft_within_specific_distance(self, distance: int, lat: float, lng: float) -> float:
+
+    def get_aircraft_within_specific_distance(self, distance: float, lat: float, lng: float) -> float:
         """
-        Returns a list of aircraft within the specific distance from the cordinates prodivded. 
+        Returns the aircrafts distance from a cente 
         :params:
             distance: The radius to be measured from lng and lat as the central point
             lng: Longitude of location
@@ -121,7 +122,7 @@ class Aircraft:
             self.distance_specific_point = None
         except IncorrectDeltaCalculation as err: 
             self.distance_specific_point = None
-            # To-Do: Log Exception error
+            # To-Do: Log Exception error or raise/ return to better handle.
 
         if self.distance_specific_point and _dist <= distance:
             self.is_within_distance = True

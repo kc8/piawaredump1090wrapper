@@ -129,4 +129,5 @@ class QueryScanner:
                 except KeyError: # Data was not picked up by reciever
                     pass  
             known_aircarft.append(Aircraft(**_parameters))
+            _parameters = {}
         return known_aircarft
