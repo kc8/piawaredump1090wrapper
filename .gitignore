@@ -3,6 +3,7 @@ secrets.json
 /adbs_env
 /dev_env
 example.py
+Example_Query_Image.png
 
 # My work on a google assitant function that is not yet ready. But I do have a working test
 /google_assistant_local_sample

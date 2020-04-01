@@ -1,5 +1,4 @@
-# Aircraft PiAware and DUMP1090 API and wrapper 
-
+# PiAware and DUMP1090 Python Request wrapper 
 
 **Application is still in testing and development. If you have suggestions, comments or want to help out feel free to open a PR or submit an issue.**
 
@@ -33,6 +32,7 @@ for i in aircraft:
 # To-Do
 
 - [ ] Setup a docs for reference
+- [ ] Fix some typos
 - [ ] Improve setup.py and requirements
 - [ ] Better exception handling- 
 - [ ] Implement generator function for querying
