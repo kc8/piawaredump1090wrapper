@@ -17,5 +17,5 @@ setuptools.setup(
     author = 'Kyle Cooper',
     author_email = 'kyle@cooperkyle.com',
     description = 'A module for reading aircraft a PiAware device is sensing',
-    license = 'Public Domain',
+    license = 'MIT',
 )
