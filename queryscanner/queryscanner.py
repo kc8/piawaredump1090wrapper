@@ -7,8 +7,7 @@ class QueryScanner:
 
     def _create_query_url(self):
         """
-        To-Do: need to create a test here or validation for the 
-            URL and then raise a custom exception
+        Creates the query string for the object and stores it. 
         """
         try: 
             self._query_url = str(self.url) + ":" + str(self.port)
@@ -25,7 +24,7 @@ class QueryScanner:
                 ):
         """
         @param:
-            url: base url of the sensor
+            url: Url/uri/IP address of the PiAware, default is localhost
             port: port number as string, default is 8080
         """ 
         self.url = url 
@@ -53,8 +52,9 @@ class QueryScanner:
 
     def _auth(self, **auth) -> None:
         """
-        Not implemented because there is no need to authorize to API
-        # To-Do: Research if there is authentication needed on some PiAware implmentations
+        Not implemented because there is no need to authorize to API 
+        Need to research more into this, left this here as a reminder
+        
         """
         return None
     
@@ -63,7 +63,7 @@ class QueryScanner:
         """
         Returns the status of the Raspberry Pi Sensor. Not yet implemented
         URL is: .../dump1090-fa/data/stats.json
-        #To-Do: Implement this but do not current
+        Part of a To-Do is to implment this. 
         @return
             Dictionary of stats. 
         """
@@ -72,12 +72,7 @@ class QueryScanner:
     def _query(self, _specific_api_url: str) -> dict:
         """
         Queries the API. Function is to reduce code duplications
-        @Return: Response object as json
-        #To-Do: Need to Raise errors here to return to the calling object
-
-        # To-DO: Fix bug, it looks like its duplicating infor
-                # I think it has to do with the .json() from requests
-
+        :Return: Response object as json
         """
         url = self._query_url + _specific_api_url
         try:
@@ -93,12 +88,9 @@ class QueryScanner:
 
     def get_all_aircraft(self) -> [Aircraft]:
         """
-        Returns list of all 
-        craft scanner has seen regardless of whether it 
+        Returns list of all aircraft scanner has seen regardless of whether it 
         has received all Aircraft information (such as tail number or Flight #)
-        #To-Do: Better way to define the API_URL that is being used. 
-        @return:
-            List of Airfract seen by the receiver
+        :return: List of Airfract seen by the receiver
         """ 
         _raw_aircraft_data = self._query(self._scanner_aircraft_path)
 
@@ -120,8 +112,6 @@ class QueryScanner:
         _parameters = {}
         # To-Do: n^2, need something better instead of brute force,
         # (Replace with generator? )
-        # To-Do: Code is duplicating the JSON entries here
-        #print(_raw_aircraft_data['aircraft'][0]) # used in troubleshooting duplicate entires
         for i in _raw_aircraft_data['aircraft']:
             for k in _response_keys:
                 try:

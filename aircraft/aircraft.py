@@ -4,13 +4,17 @@ from .exceptions import NotofTypeFloat, IncorrectDeltaCalculation, IncorrectLngL
 
 class Aircraft:
     """
-    Airacraft class that holds information a single aircraft
+    Airacraft class containg information regarding a single aircraft.
+    
+    Some notes about arugments:
+     Note: maybe we can make another class or method that tracks location? 
+     Note: hex is ICAO number. ADSBexchange gives it the name hex. 
+     Note: lat and lng have differing names in class verus API
+     Note: gs is ground speed. 
+     Note: alt_geom is altitude
+     icaco_number is used to identify the object when created
     """
-    # Note: maybe we can make another class or method that tracks location? 
-    # Note: hex is ICAO number. ADSBexchange gives it the name hex. 
-    # Note: lon is lng in class. Similar to how hex is setup
-    # gs: Ground Speed. alt_geom = altitude
-    #   Use icaco_number to access
+
     def __init__(self, hex,
                 flight=None, 
                 squawk=None, 
@@ -33,8 +37,8 @@ class Aircraft:
         self.track = track 
         self.speed = gs 
         self.seen = seen
-        self.is_within_distance = None # boolean if i
-        self.distance_specific_point = None # value from distance
+        self.is_within_distance = None # boolean if within a certain distance
+        self.distance_specific_point = None # value from that distance
 
 
     def __repr__(self): 
@@ -59,8 +63,8 @@ class Aircraft:
 
     def __eq__(self, other):
         """
-        Compares on ICAO number not registration number since the registration may not have 
-        populated from the request. 
+        Compares the two icao numbers and returns. ICAO is the identifies for a unique
+        aircarft
         """
         return self.icao_number == other.icao_number
     
@@ -73,24 +77,18 @@ class Aircraft:
 
 
     def __hash__(self):
+        """
+        Hashes based on __key, which is the icao number
+        """
         hash_val = hash(self.__key())
         print(hash_val) 
         return hash_val
-    
-    """
-    # Override the setattr method as we do not want to have custom or accidental __dict__[names]
-    def __setattr__(self, name, value): 
-        if self.__dict__[name]:
-            self.__dict__[name] = value
-            return True
-    
-        return False
-    """
+
 
     def update_info(self, **kwargs) -> bool: 
         """
         Updates attirubutes of the airplane. 
-        # To-Do: This method should not update the hex (ICAO) number
+        
         :param: 
             **kwargs: Dictionary of values to update
         :return: Boolean value if update was sucessful or not
@@ -108,10 +106,11 @@ class Aircraft:
         """
         Returns the aircrafts distance from a cente 
         :params:
-            distance: The radius to be measured from lng and lat as the central point
+            distance: The radius to be measured from the central point in lng and lat 
             lng: Longitude of location
             lat: Latitude of location
         """
+
         _dist = None
         try:
             _dist = calculate_distance_of_aircraft(lat, lng, self.lat, self.lng)
@@ -122,7 +121,7 @@ class Aircraft:
             self.distance_specific_point = None
         except IncorrectDeltaCalculation as err: 
             self.distance_specific_point = None
-            # To-Do: Log Exception error or raise/ return to better handle.
+            
 
         if self.distance_specific_point and _dist <= distance:
             self.is_within_distance = True
@@ -133,9 +132,9 @@ class Aircraft:
 
     def get_aircraft_info(self) -> tuple: 
         """
-        Returns a tuple of all parameters of the aircraft. Some may be "None" or a 
-        similar value if they did not get populated during init. Usually due to lack of 
-        information from the ADSB scanner"
+        Returns a tuple of all parameters of the aircraft. Some may be "None" 
+        if they did not get populated during init. Usually due to lack of 
+        information from the ADSB scanner. 
         :param: None
         :return: Tuple of all characteristics of the aircraft
         """

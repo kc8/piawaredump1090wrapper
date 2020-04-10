@@ -1,10 +1,9 @@
 from math import sin, radians, cos, asin, sqrt
 from .exceptions import NotofTypeFloat, IncorrectLngLat, IncorrectDeltaCalculation
 
+
 def calculate_distance_of_aircraft(lat1: float, lng1: float, lat2: float, lng2: float) -> float: 
     """
-    # To-Do: Use tuple unpacking instead of arguments to make code cleaner? 
-    # To-Do: Think of any other mathmatical errors we could see
     Calculate the distance from two sets of geographic cordinates and return their distance from each other. 
     Source of equation: https://en.wikipedia.org/wiki/Great-circle_distance 
     Steps: 
