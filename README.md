@@ -13,8 +13,12 @@ You will need local LAN access to a Piaware enabled device.
 - **Make sure to have alook in the requirments.txt file for additional dependencies** 
 
 # Setup  
-- run setup.py. In venv or other
+- Create a virtual enviorment with: 
+```python3 -m venv [env_name_here]```
+- Download the setup.py file with the following command:
 ```python3 setup.py install ```
+- OR you can use pip 
+```pip3 install PiAware_Dump1090_Wrapper```
 
 # Sample Usuage
 ```python
@@ -48,3 +52,5 @@ for i in aircraft:
 - [ ] Implement ability to get the status of the PiAware. This should be just an fstring dump of the date as it would be out of scope to relay on this for that information (maybe make a seperate model?)
 - [ ] Using n^2 method for querying data in get_all_aircraft(). I was able to improve a feature that queried the reciever twice for something, now need to work on improving this for effieceny. 
 - [ ] Need to improve on exception handinling in get_all_aircraft()
+- [ ] Add implementation to avoid creating multiple queryscanner(). Need a better way to initlizie this class. 
+- [x] Create a PyPi package
